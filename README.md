@@ -1,4 +1,8 @@
-# NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations
+<p align=”center”>
+<img width=”200" height=”200" src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/9826d0a2-b852-434b-a712-f3ed18ef40ef" alt="my banner">
+</p>
+
+# Upload Backend To Cloud Server (Ubuntu) - Configurations
 This is configuration reference text file which can be helpful for your next deployment
 
 // install node and npm:-
