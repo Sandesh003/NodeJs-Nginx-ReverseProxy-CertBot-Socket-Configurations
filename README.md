@@ -138,3 +138,40 @@ For Socket.io Or Websocket Reverse Proxy:
 
 if everything is perfect than restart your nginx server
 ~ sudo systemctl restart nginx
+
+
+-------------------------------------------------------- Postgres ----------------------------------------------------------------------
+
+~ Note:- [ https://devopscube.com/install-configure-postgresql-amazon-linux/ ] Find more about postgresql installation.
+
+~ sudo service postgresql start
+~ sudo systemctl enable postgresql (This will enable postgres service to start on every service...)
+
+
+------------------------------------------- upgrade Disk space EC2 ------------------------------
+~ Go to EC2 console , select desired ec2 instance and select Storage , then select volumn id and click on Actions and select modify volume.
+~ insert required disk space
+Note: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html 
+
+~ refere above doc for "Extend a Linux file system after resizing a volume".
+~ sudo lsblk
+
+Step : 1 [Extend the partition]
+~ sudo growpart /dev/xvda 1
+
+Step : 2 [Extend the file system]
+Get the name, size, type, and mount point for the file system that you need to extend. Use the df -hT command.
+~ df -hT
+
+	2.1
+	~ The commands to extend the file system differ depending on the file system type. Choose the following correct command based on the file system type that you noted in the previous step.
+
+	[XFS file system] Use the xfs_growfs command and specify the mount point of the file system that you noted in the previous step.
+	
+	sudo xfs_growfs -d /
+
+	
+	2.2
+	~ [Ext4 file system] Use the resize2fs command and specify the name of the file system that you noted in the previous step.
+
+	sudo resize2fs /dev/xvda1
