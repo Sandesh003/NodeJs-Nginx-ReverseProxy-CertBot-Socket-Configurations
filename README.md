@@ -58,7 +58,7 @@ sudo ufw status
 ```
 > **NOTE:-** <br>
 If it shows `inactive` then First add 22/tcp via ```sudo ufw allow 22/tcp``` after that use ``` sudo ufw enable ``` command.
-> + Enabling ufw will disturb the ssh connection and after rebooting there are empty ufw list that will cause you ssh connection error and you will no longer have access to you EC2 instance.
+> + Enabling ufw will disturb the ssh connection and after rebooting there are empty ufw list that will cause ssh connection error and you will no longer have access to your EC2 instance.
 > + Adding 22/tcp before enabling ufw will allow you to stay connected via ssh.
 
 now you can access ufw.
