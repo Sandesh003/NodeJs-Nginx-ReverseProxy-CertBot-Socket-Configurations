@@ -2,6 +2,30 @@
 <img width=”200" height=”200" src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/9826d0a2-b852-434b-a712-f3ed18ef40ef" alt="my banner">
 </p>
 
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/66aee301-b64b-4102-b841-d2c6f447ad73" alt="ScreenShot1">
+</p>
+
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/982989df-54f9-484b-8415-9545b0ed2fcf" alt="ScreenShot2">
+</p>
+
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/8f1227e3-328b-4e8e-a83e-f2eee29e6cbe" alt="ScreenShot3">
+</p>
+
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/1d17f152-14c0-4ae7-9cab-2bbfb9708327" alt="ScreenShot4">
+</p>
+
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/56493a69-782f-4496-bb20-4e5d7ca97a6f" alt="ScreenShot5">
+</p>
+
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/1a7022f1-dc59-4eda-bc8c-4cc49c4aa263" alt="ScreenShot6">
+</p>
+
 # Upload Backend To Cloud Server (Ubuntu) - Configurations
 This is configuration reference text file which can be helpful for your next deployment
 
