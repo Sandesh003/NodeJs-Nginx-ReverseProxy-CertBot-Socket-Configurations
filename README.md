@@ -117,10 +117,12 @@ sudo systemctl start nginx
 sudo systemctl restart nginx
 ```
 
-// For Reverse Proxy
-~ Go to " /etc/nginx/sites-enabled/ " and edit the default file with nano command...
-~ add following into default file IN server --> 
+## Reverse Proxy Configurations:-
 
+Go to ` /etc/nginx/sites-enabled/ ` and edit the default file with nano command...
+
+**add following into default file in server** 
+```
 server_name your-domain.co.in;
 
 location / {
@@ -131,32 +133,47 @@ location / {
          proxy_set_header Host $host;
          proxy_cache_bypass $http_upgrade;
 }
-// Check your file
-~ sudo nginx -t
+```
 
-if everything is perfect than restart your nginx server
-~ sudo systemctl restart nginx
+Check your file
+```
+sudo nginx -t
+```
++ if everything is perfect than restart your nginx server
 
-// Check your site with your curl
-~ curl http://localhost (it will now show your home route content)
+```
+sudo systemctl restart nginx
+```
 
-// CertBot
-link:- https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/
+Check your site with your curl
+```
+curl http://localhost
+```
++ it will now show your home route content
 
-~ sudo apt-get update
-~ sudo apt-get install certbot
-~ sudo apt-get install python-certbot-nginx
+## CertBot Configurations:-
 
+> Refere to [CertBot-Nginx](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/) if you want to learn more.
 
+**Install CertBot**
+```
+sudo apt-get update
+sudo apt-get install certbot
+sudo apt-get install python-certbot-nginx
+```
+> Note:
 With Ubuntu 18.04 and later, substitute the Python 3 version:
+```
+sudo apt-get update
+sudo apt-get install certbot
+sudo apt-get install python3-certbot-nginx
+```
++ It will do necessary changes in default.conf file of nginx and provide you certificate by running below command.
 
-~ sudo apt-get update
-~ sudo apt-get install certbot
-~ sudo apt-get install python3-certbot-nginx
-
-Obtain SSL/TSL cerificate 
-~ sudo certbot --nginx -d [your website address]
-
+**Obtain SSL/TSL cerificate**
+```
+sudo certbot --nginx -d [your website address]
+```
 
 ----------------------------------------------------------- Socket.io --------------------------------------------------------
 
