@@ -34,6 +34,7 @@ git branch -r | grep -v '\->' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | while read re
 + Make a build
 
 ## Process manager (pm2) Setup:-
+PM2 is a NodeJs process manager that comes with a built-in load balancer. It helps facilitate production deployments and enables you to keep running applications alive indefinitely
 ```
 sudo npm install pm2 -g
 pm2 start //your entry file path
@@ -48,6 +49,7 @@ pm2 start {id}/{tag name}
 ```
 
 ## Nginx Setup:-
+NGINX is open source software for web serving, reverse proxying, caching, load balancing, media streaming, and more. It started out as a web server designed for maximum performance and stability.
 ```
 sudo apt update
 sudo apt install nginx
@@ -128,6 +130,8 @@ curl http://localhost
 + it will now show your home route content
 
 ## CertBot Configurations:-
+Certbot is usually meant to be used to switch an existing HTTP site to work in HTTPS (and, afterward, to continue renewing the site's HTTPS certificates whenever necessary).<br>
+An SSL/TLS certificate is a digital object that allows systems to verify the identity & subsequently establish an encrypted network connection to another system using the Secure Sockets Layer/Transport Layer Security (SSL/TLS) protocol.
 
 > Refere to [CertBot-Nginx](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/) if you want to learn more.
 
@@ -152,6 +156,8 @@ sudo certbot --nginx -d [your website address]
 ```
 
 ## Socket.io 
+Socket.IO is a library that enables low-latency, bidirectional and event-based communication between a client and a server. It is built on top of the WebSocket protocol and provides additional guarantees like fallback to HTTP long-polling or automatic reconnection.
+
 If you are having socket in your nodeJs app then this section will help you to configure it with nginx.
 
 > For Socket.io Or Websocket Reverse Proxy : [Learn more](https://www.nginx.com/blog/nginx-nodejs-websockets-socketio/)
