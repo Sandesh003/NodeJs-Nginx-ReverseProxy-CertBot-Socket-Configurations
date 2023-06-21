@@ -27,54 +27,95 @@
 </p>
 
 # Upload Backend To Cloud Server (Ubuntu) - Configurations
-This is configuration reference text file which can be helpful for your next deployment
+This is configuration reference file which can be helpful for your next deployment
 
-// install node and npm:-
+## Node Setup:-
+```
+sudo apt update
+sudo apt install nodejs
+node -v
+sudo apt install npm
+```
+> In case of updating nodeJs
+```
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+```
 
-~ sudo apt update
-~ sudo apt install nodejs
-~ node -v
-~ sudo apt install npm
+you need to fix path for that use below command:-
+``` hash -r {newPath} ```
 
-{
-	In case of updating nodeJs 
-	~ sudo npm cache clean -f
-	~ sudo npm install -g n
-	~ sudo n stable
-
-	you need to fix path for that use below command:-
-	~ hash -r {newPath}
-}
-
+## GitHub Project Setup:-
 get your project from GIT via git clone;
 
 For fetching all remote branch use below command:
-~ git branch -r | grep -v '\->' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+```
+git branch -r | grep -v '\->' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+```
++ Checkout to your working branch: ```git checkout -b {branchname} ```
++ Install node_modules: ``` npm install ```
++ Make a build
 
-// install process manager (pm2)
-~ sudo npm install pm2 -g
-~ pm2 start //your entry file path
+## Process manager (pm2) Setup:-
+```
+sudo npm install pm2 -g
+pm2 start //your entry file path
+```
+**pm2 commands:-**
+```
+pm2 status
+pm2 logs
+pm2 logs --lines 1000
+pm2 stop {id}/{tag name}
+pm2 start {id}/{tag name}
+```
 
-//install nginx
-~ sudo apt update
-~ sudo apt install nginx
-~ sudo ufw app list
-~ sudo ufw allow 'Nginx Full' (or any options you needed)
-~ sudo ufw status (if it shows inactive then use " sudo ufw enable " command. ###IMP NOTE:- when you enable ufw and reboot your instance. First you have to add 22/tcp before enabling ufw. Following is the command
-~ ufw allow 22/tcp ) 
+## Nginx Setup:-
+```
+sudo apt update
+sudo apt install nginx
+```
+**Check ufw status**
+```
+sudo ufw status
+```
+> NOTE:-
+if it shows `inactive` then First add 22/tcp via ```sudo ufw allow 22/tcp``` after that use ``` sudo ufw enable ``` command.
+> + Enabling ufw will disturb the ssh connection and after rebooting there are empty ufw list that will cause you ssh connection error and you will no longer have access to you EC2 instance.
+> + Adding 22/tcp before enabling ufw will allow you to stay connected via ssh.
 
-// Checking your Web Server
-~ systemctl status nginx (it will show active(running))
-~ curl http://localhost ( to check weather your app is running )
+now you can access ufw.
+```
+sudo ufw app list
+sudo ufw allow 'Nginx Full' (or any options you needed)
+```
 
-// To stop your web server
-~ sudo systemctl stop nginx
+### Checking your Web Server
+```
+systemctl status nginx
+```
+**it will show active(running)**
 
-// To start the web server when it is stopped
-~ sudo systemctl start nginx
++ To check weather your app is running
+```
+curl http://localhost
+```
 
-// To stop and then start the service again
-~ sudo systemctl restart nginx
++ To stop your web server
+```
+sudo systemctl stop nginx
+```
+
++ To start the web server when it is stopped
+```
+sudo systemctl start nginx
+```
+
++ To restart the service again
+```
+sudo systemctl restart nginx
+```
 
 // For Reverse Proxy
 ~ Go to " /etc/nginx/sites-enabled/ " and edit the default file with nano command...
