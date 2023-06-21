@@ -1,5 +1,5 @@
 <p align=”center”>
-<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/704c7c7d-357f-4eba-adce-a928f8116560" alt="my banner">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/009c2621-b544-462b-8f88-873dddbd3b44" alt="my banner">
 </p>
 
 # Upload NodeJs Backend To Cloud Server (Ubuntu) - Configurations
