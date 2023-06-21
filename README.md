@@ -2,31 +2,7 @@
 <img width=”200" height=”200" src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/9826d0a2-b852-434b-a712-f3ed18ef40ef" alt="my banner">
 </p>
 
-<p align="center">
-<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/66aee301-b64b-4102-b841-d2c6f447ad73" alt="ScreenShot1">
-</p>
-
-<p align="center">
-<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/982989df-54f9-484b-8415-9545b0ed2fcf" alt="ScreenShot2">
-</p>
-
-<p align="center">
-<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/8f1227e3-328b-4e8e-a83e-f2eee29e6cbe" alt="ScreenShot3">
-</p>
-
-<p align="center">
-<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/1d17f152-14c0-4ae7-9cab-2bbfb9708327" alt="ScreenShot4">
-</p>
-
-<p align="center">
-<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/56493a69-782f-4496-bb20-4e5d7ca97a6f" alt="ScreenShot5">
-</p>
-
-<p align="center">
-<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/1a7022f1-dc59-4eda-bc8c-4cc49c4aa263" alt="ScreenShot6">
-</p>
-
-# Upload Backend To Cloud Server (Ubuntu) - Configurations
+# Upload NodeJs Backend To Cloud Server (Ubuntu) - Configurations
 This is configuration reference file which can be helpful for your next deployment
 
 ## Node Setup:-
@@ -80,8 +56,8 @@ sudo apt install nginx
 ```
 sudo ufw status
 ```
-> NOTE:-
-if it shows `inactive` then First add 22/tcp via ```sudo ufw allow 22/tcp``` after that use ``` sudo ufw enable ``` command.
+> **NOTE:-** <br>
+If it shows `inactive` then First add 22/tcp via ```sudo ufw allow 22/tcp``` after that use ``` sudo ufw enable ``` command.
 > + Enabling ufw will disturb the ssh connection and after rebooting there are empty ufw list that will cause you ssh connection error and you will no longer have access to you EC2 instance.
 > + Adding 22/tcp before enabling ufw will allow you to stay connected via ssh.
 
@@ -161,7 +137,7 @@ sudo apt-get update
 sudo apt-get install certbot
 sudo apt-get install python-certbot-nginx
 ```
-> Note:
+> **NOTE:-** <br>
 With Ubuntu 18.04 and later, substitute the Python 3 version:
 ```
 sudo apt-get update
@@ -175,29 +151,29 @@ sudo apt-get install python3-certbot-nginx
 sudo certbot --nginx -d [your website address]
 ```
 
------------------------------------------------------------ Socket.io --------------------------------------------------------
+## Socket.io 
+If you are having socket in your nodeJs app then this section will help you to configure it with nginx.
 
+> For Socket.io Or Websocket Reverse Proxy : [Learn more](https://www.nginx.com/blog/nginx-nodejs-websockets-socketio/)
 
-For Socket.io Or Websocket Reverse Proxy:
-~ https://www.nginx.com/blog/nginx-nodejs-websockets-socketio/
-
-~ # in the http{} configuration block (Choose Any of the following as per need)
-~ you can find http{} block in "/etc/nginx/nginx.conf"
-
+In the http{} configuration block (Choose Any of the following as per need)
+> you can find http{} block in `/etc/nginx/nginx.conf`
+```
 	upstream socket_nodes {
     		ip_hash;
 		    server 127.0.0.1:5000 weight=5;
-    		server 127.0.0.1:8080;       		#ideal for most cases.(Use your app's port.)
-    		server unix:/tmp/backend3;
+    		    server 127.0.0.1:8080;       		#ideal for most cases.(Use your app's port.)
+    		    server unix:/tmp/backend3;
 		    server backend1.example.com weight=5;
-
 		    server backup1.example.com  backup;
 	}
+```
+> **NOTE:-** <br>
+The nginx_http_upstream_module is used to define groups of servers that can be referenced by the proxy_pass, fastcgi_pass, uwsgi_pass, scgi_pass, memcached_pass, and grpc_pass directives.
 
-~ Note:- [ The ngx_http_upstream_module is used to define groups of servers that can be referenced by the proxy_pass, fastcgi_pass, uwsgi_pass, scgi_pass, memcached_pass, and grpc_pass directives. ]
-
-~ Then change server reverse proxy url :-
-~ server {
+Then change server reverse proxy url :-
+```
+server {
     location / {
         proxy_pass http://socket_nodes; #{give here your upstream name which you declare in http block nginx.conf file.}
     }
@@ -212,48 +188,52 @@ For Socket.io Or Websocket Reverse Proxy:
         proxy_pass http://socket_nodes;
    }
 }
+```
 
-~ Note:- [ https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream ] Find more about upstream
+> **NOTE:-** <br>
+Find more about [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
 
-// Check your file
-~ sudo nginx -t
+Check your config file
+```
+sudo nginx -t
+```
 
-if everything is perfect than restart your nginx server
-~ sudo systemctl restart nginx
+If everything is perfect than restart your nginx server
+```
+sudo systemctl restart nginx
+```
+
+## Upgrade Disk space EC2
+In case you have a need to upgrade your disk capacity after making an EC2 instance than follow below steps.
+
++ Go to EC2 console , select desired ec2 instance and select Storage , then select volumn id and click on Actions and select modify volume.
++ Insert required disk space
+> **NOTE:-** <br>
+[Find more](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html) about expanded volume linux.
+
+**Refere below steps for "Extend a Linux file system after resizing a volume.**
 
 
--------------------------------------------------------- Postgres ----------------------------------------------------------------------
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/66aee301-b64b-4102-b841-d2c6f447ad73" alt="ScreenShot1">
+</p>
 
-~ Note:- [ https://devopscube.com/install-configure-postgresql-amazon-linux/ ] Find more about postgresql installation.
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/982989df-54f9-484b-8415-9545b0ed2fcf" alt="ScreenShot2">
+</p>
 
-~ sudo service postgresql start
-~ sudo systemctl enable postgresql (This will enable postgres service to start on every service...)
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/8f1227e3-328b-4e8e-a83e-f2eee29e6cbe" alt="ScreenShot3">
+</p>
 
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/1d17f152-14c0-4ae7-9cab-2bbfb9708327" alt="ScreenShot4">
+</p>
 
-------------------------------------------- upgrade Disk space EC2 ------------------------------
-~ Go to EC2 console , select desired ec2 instance and select Storage , then select volumn id and click on Actions and select modify volume.
-~ insert required disk space
-Note: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html 
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/56493a69-782f-4496-bb20-4e5d7ca97a6f" alt="ScreenShot5">
+</p>
 
-~ refere above doc for "Extend a Linux file system after resizing a volume".
-~ sudo lsblk
-
-Step : 1 [Extend the partition]
-~ sudo growpart /dev/xvda 1
-
-Step : 2 [Extend the file system]
-Get the name, size, type, and mount point for the file system that you need to extend. Use the df -hT command.
-~ df -hT
-
-	2.1
-	~ The commands to extend the file system differ depending on the file system type. Choose the following correct command based on the file system type that you noted in the previous step.
-
-	[XFS file system] Use the xfs_growfs command and specify the mount point of the file system that you noted in the previous step.
-	
-	sudo xfs_growfs -d /
-
-	
-	2.2
-	~ [Ext4 file system] Use the resize2fs command and specify the name of the file system that you noted in the previous step.
-
-	sudo resize2fs /dev/xvda1
+<p align="center">
+<img src="https://github.com/Sandesh003/NodeJs-Nginx-ReverseProxy-CertBot-Socket-Configurations/assets/93026800/1a7022f1-dc59-4eda-bc8c-4cc49c4aa263" alt="ScreenShot6">
+</p>
